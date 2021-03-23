@@ -1,3 +1,4 @@
-torch
-nibabel
-medpy
+torch==1.8.0
+nibabel==3.2.1
+medpy==0.4.0
+scikit-learn==0.24.1
