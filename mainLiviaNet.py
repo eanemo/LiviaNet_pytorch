@@ -39,7 +39,7 @@ def numpy_to_var(x):
         torch_tensor = torch_tensor.cuda()
     return Variable(torch_tensor)
     
-def inference(network, moda_1, moda_g, imageNames, epoch, folder_save):
+def inference(network, moda_1, moda_g, imageNames, epoch, folder_save, numClasses = 4):
     '''root_dir = './Data/MRBrainS/DataNii/'
     model_dir = 'model'
 
@@ -47,7 +47,7 @@ def inference(network, moda_1, moda_g, imageNames, epoch, folder_save):
     moda_g = root_dir + 'Training/GT'''
     network.eval()
     softMax = nn.Softmax()
-    numClasses = 4  # Move this out
+    # numClasses = 4  # Move this out
     if torch.cuda.is_available():
         softMax.cuda()
         network.cuda()
@@ -259,7 +259,7 @@ def runTraining(opts):
         print(' Epoch: {}, loss: {}'.format(e_i,np.mean(lossEpoch)))
 
         if (e_i%opts.freq_inference)==0:
-            dsc = inference(liviaNet,moda_1_val, moda_g_val, imageNames_val,e_i, opts.save_dir)
+            dsc = inference(liviaNet,moda_1_val, moda_g_val, imageNames_val,e_i, opts.save_dir, numClasses=num_classes)
             dscAll.append(dsc)
             print(' Metrics: DSC(mean): {} per class: 1({}) 2({}) 3({})'.format(np.mean(dsc),np.mean(dsc[:,0]),np.mean(dsc[:,1]),np.mean(dsc[:,2])))
             if not os.path.exists(model_name):
