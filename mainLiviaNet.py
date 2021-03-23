@@ -68,8 +68,8 @@ def inference(network, moda_1, moda_g, imageNames, epoch, folder_save, numClasse
         for i_p in range(patch_1.shape[0]):
             pred = network(numpy_to_var(x[i_p,:,:,:,:].reshape(1,3,patchSize,patchSize,patchSize)))
             pred_y = softMax(pred)
-            print(pred_y.cpu().data.numpy().shape)
-            print(pred_numpy.shape)
+            #print(pred_y.cpu().data.numpy().shape)
+            #print(pred_numpy.shape)
             pred_numpy[i_p,:,:,:,:] = pred_y.cpu().data.numpy()
 
             printProgressBar(i_s*((totalOp+0.0)/len(imageNames)) + i_p + 1, totalOp,
