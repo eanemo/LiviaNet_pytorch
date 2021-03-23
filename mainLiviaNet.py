@@ -261,7 +261,7 @@ def runTraining(opts):
         if (e_i%opts.freq_inference)==0:
             dsc = inference(liviaNet,moda_1_val, moda_g_val, imageNames_val,e_i, opts.save_dir, numClasses=num_classes)
             dscAll.append(dsc)
-            print(' Metrics: DSC(mean): {} per class: 1({}) 2({}) 3({})'.format(np.mean(dsc),np.mean(dsc[:,0]),np.mean(dsc[:,1]),np.mean(dsc[:,2])))
+            print(' Metrics: DSC(mean): {} per class: 1({})'.format(np.mean(dsc),np.mean(dsc[:,0])))
             if not os.path.exists(model_name):
                 os.makedirs(model_name)
             
