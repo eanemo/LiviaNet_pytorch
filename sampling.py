@@ -1,6 +1,6 @@
 import numpy as np
 import nibabel as nib
-from sklearn.feature_extraction.image import extract_patches as sk_extract_patches
+from sklearn.feature_extraction.image import extract_patches_2d as sk_extract_patches
 import pdb
 import itertools
 
